@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-body {background-color: black;}
-h1   {color: red;}
-p    {color: red;
-</style>
+	<title>The philosopher</title>
+	<style>
+	body {background-color: black;}
+	h1   {color: red;}
+	p    {color: green;
+	</style>
 </head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-<button type="button">Click Me!</button>
+	<p> score: <span id="score"> 0 </span> </p>
+	<button type="button" onclick="addtoscore(10)">add 10 to score</button>
+	<button onclick="BuyAdder(1)">adder [<span id="Cost">15</span>] -- <span id="bought">0</span></button>
+	<script>
+		var score = 0;
+		var cost = 15;
+		var bought = 0;
+		function BuyAdder(amount)
+		{
+			if(score >= cost)
+			{
+				score = score - cost;
+				bought = bought + 1;
+				cost = cost + 1;
+				document.getElementById("score").innerHTML = score
+				document.getElementById("Cost").innerHTML = cost
+				document.getElementById("bought").innerHTML = bought
+			}
+		}
+		function addtoscore(amount)
+		{
+		score = score + amount;
+		document.getElementById("score").innerHTML = score;
+		}
+		setInterval(function()
+		{
+		 score = score + bought;
+		 document.getElementById("score").innerHTML = score
+		}, 1000);
+	</script>
 </body>
 </html>
