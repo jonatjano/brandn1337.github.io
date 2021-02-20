@@ -3,40 +3,90 @@
 <head>
 	<title>The philosopher</title>
 	<style>
+	.LeftSection
+	{
+
+	padding-left: 5px;
+	border-style: solid;
+	border-color: red;
+	float: left;
+	background-color: grey;
+	height: 600px;
+	width: 200px;
+	}
+	.TopMiddleSection
+	{
+	float: left;
+	width: 1380px;
+	height: 250px;
+	border-style: solid;
+	border-color: red;
+	background-color: grey;
+	
+	}
+	.RightSection
+	{
+	border-style: solid;
+	border-color: red;
+	background-color: grey;
+	float: right;
+	height: 600px;
+	width: 300px;
+	}
+	span 
+	{
+		color: green; 
+	}
 	body {background-color: black;}
-	h1   {color: red;}
-	p    {color: green;
+	p    {color: white;
 	</style>
 </head>
 <body>
-	<p> score: <span id="score"> 0 </span> </p>
-	<button type="button" onclick="addtoscore(10)">add 10 to score</button>
-	<button onclick="BuyAdder(1)">adder [<span id="Cost">15</span>] -- <span id="bought">0</span></button>
+	<div class ="LeftSection">
+		<p> Money: <span id="Money"> 0</span>$ </p>
+		<p> income: <span id="Income"> 0 </span>/s </p>
+	</div>
+	<div class ="TopMiddleSection">
+		<button type="button" onclick="ClickMoney()">Work</button>
+		<button onclick="BuyIntern(1)">Get Intern [<span id="InternCost">15</span>$] -- <span id="Interns">0</span></button>
+	</div>
+	<div class = "RightSection">
+	</div>
 	<script>
-		var score = 0;
-		var cost = 15;
-		var bought = 0;
-		function BuyAdder(amount)
+		var clickpower = 1;
+ 		var money = 0;
+		var interncost = 15;
+		var interns = 0;
+		var income = 0;
+		var interprofit = 1;
+		function BuyIntern(amount)
 		{
-			if(score >= cost)
+			if(money>= interncost)
 			{
-				score = score - cost;
-				bought = bought + 1;
-				cost = cost + 1;
-				document.getElementById("score").innerHTML = score
-				document.getElementById("Cost").innerHTML = cost
-				document.getElementById("bought").innerHTML = bought
+				money = money - interncost;
+				interns = interns + 1;
+				interncost = Math.round(interncost * 1.15);
+				document.getElementById("Money").innerHTML = money;
+				document.getElementById("InternCost").innerHTML = interncost;
+				document.getElementById("Interns").innerHTML = interns;
+				UpdateIncome();
 			}
 		}
-		function addtoscore(amount)
+		function ClickMoney()
 		{
-		score = score + amount;
-		document.getElementById("score").innerHTML = score;
+		money = money + clickpower;
+		document.getElementById("Money").innerHTML = money;
+		}
+		function UpdateIncome()
+		{
+		income = 0;
+		income = income + interprofit * interns;
+		document.getElementById("Income").innerHTML = income;
 		}
 		setInterval(function()
 		{
-		 score = score + bought;
-		 document.getElementById("score").innerHTML = score
+		 money = money + income;
+		 document.getElementById("Money").innerHTML = money
 		}, 1000);
 	</script>
 </body>
