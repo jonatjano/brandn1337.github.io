@@ -14,15 +14,18 @@
 	}
 	.TopMiddleSection
 	{
+		box-sizing: border-box;
 		outline-width: 1px;
 		float: left;
-		width: 70%;;
-		padding-top: 150px;
+		width: 70%;
+		height: 200px;
+		padding-top: 160px;
 		outline-style: solid;
 		outline-color: grey;
 	}
 	.RightSection
 	{
+		overflow:auto;
 		outline-style: solid;
 		outline-color: grey;
 		outline-width: 1px;
@@ -34,7 +37,19 @@
 	{
 		outline-width: 1px;
 		float: left;
-		width: 70%;;
+		width: 70%;
+		height: 600px;
+		outline-style: solid;
+		outline-color: grey;
+	}
+	.Stats
+	{
+		display: none;
+		position: relative;
+		left: 10%;
+		top: 200px;
+		outline-width: 1px;
+		width: 70%;
 		height: 600px;
 		outline-style: solid;
 		outline-color: grey;
@@ -77,6 +92,7 @@
 
 	<div class ="TopMiddleSection">
 		<button type="button" class="MenuButtons">World</button>
+		<button style="display:none;" id ="StatButton" type="button" class="MenuButtons">stats</button>
 	</div>
 
 
@@ -86,61 +102,54 @@
 
 
 	<div class = "World">
-		<button id ="lorebutton1" type="button" onclick="Intro(IntroPressed)"  class="WorldButtons">open eyes</button>
-		<button id ="lorebutton2" type="button" onclick="Intro(IntroPressed)"  class="WorldButtons" style="display:none;">Get up</button>
-		<button id ="lorebutton3" type="button" onclick="Intro(IntroPressed)"  class="WorldButtons" style="display:none;">Look around</button>
-		<button id ="lorebutton4" type="button" onclick="Intro(IntroPressed)"  class="WorldButtons" style="display:none;">Remember more</button>
-		<button id ="lorebutton5" type="button" onclick="Intro(IntroPressed)"  class="WorldButtons" style="display:none;">Remember more</button>
+		<button id ="lorebutton1" type="button" onclick="Intro()"  class="WorldButtons">open eyes</button>
+		<button id ="lorebutton2" type="button" onclick="Intro()"  class="WorldButtons" style="display:none;">Get up</button>
+		<button id ="lorebutton3" type="button" onclick="Intro()"  class="WorldButtons" style="display:none;">Look around</button>
+		<button id ="lorebutton4" type="button" onclick="Intro()"  class="WorldButtons" style="display:none;">Remember more</button>
+		<button id ="lorebutton5" type="button" onclick="Intro()"  class="WorldButtons" style="display:none;">Be confused</button>
+		<button id ="lorebutton6" type="button" onclick="Intro()"  class="WorldButtons" style="display:none;">Start planning</button>
+		<button id ="lorebutton7" type="button" onclick="Intro()"  class="WorldButtons" style="display:none;">Explore</button>
+		<button id ="lorebutton8" type="button" onclick="Intro()"  class="WorldButtons" style="display:none;">Go towards glowing thing</button>
+		<button id ="lorebutton9" type="button" onclick="Intro()"  class="WorldButtons" style="display:none;">pick up glowing thing</button>
+	</div>
+
+	<div class = Stats>
 	</div>
 
 	<script>
-	
-	var IntroPressed = 1;
-	var lore1 = "You open yours eyes and immediately put your hand in front of you to block out the raging sun"
-	var lore2 = "you finnaly decide to get up and start figuring out whats happening"
-	var lore3 = "As you look around memories start flooding back into you. you remember hearing sirens in your city, then suddenly a gigantic mushroom cloud appeared in the distance,"
-	var lore4 = "After brefily seeing the cloud for less than one tenth of a second all what was left was searing pain, the feeling of your flesh and bones being vaporized was not a good one"
-	function Intro(num)
-	{
-		switch(num)
+		var StatPage = false;
+		var IntroPressed = 1;
+		var IntroLore = 
+		[
+		"You open yours eyes and immediately put your hand in front of you to block out the raging sun",
+		"you finnaly decide to get up and start figuring out whats happening",
+		"As you look around memories start flooding back into you. you remember hearing sirens in your city, then suddenly a gigantic mushroom cloud appeared in the distance.",
+		"After brefily seeing the cloud for less than one tenth of a second all what was left was searing pain, the feeling of your flesh and bones being vaporized was not a good one.",
+		"Although it all feels like a dream now, the wasteland around you is proof enough that the event preceeding your awakening did in fact happen. though the question still remains on how you are alive.",
+		"You wont answer any questions by standing around, you need to find food, water and shelter if you want to survive, even if those things seems impossible to find in this barren wasteland.",
+		"you start searching your surroundings, you dont know how long you searched for but it had allready became night time, thankfully you can now see something glowing in the distance.",
+		"You start walking towards the glowing thing and after what seems like hours of walking you find a massive crator with the glowing thing in middle, seemingly crash landed, in slide down and walk up towards the glowing thing",
+		"you have obtained a fragment of the akashic records"
+		]
+		function Intro()
 		{
-			  case 1:
-				  document.getElementById("loretext").innerHTML = lore1;
-				  document.getElementById("lore1").style.display = "block";	
-				  var myobj = document.getElementById("lorebutton1");
-				  myobj.remove()
-				  document.getElementById("lorebutton2").style.display = "block";	
-				  IntroPressed = IntroPressed + 1;
-			  break;
-	
-			  case 2:
-				  var myobj = document.getElementById("lorebutton2");
-				  myobj.remove()
-				  var contents = document.getElementById("loretext").innerHTML
-				  document.getElementById("loretext").innerHTML = lore2 + '<br>' + '<br>' + contents
-				  document.getElementById("lorebutton3").style.display = "block";
-				  IntroPressed = IntroPressed + 1;
-			  break;
-
-			  case 3:
-				  var myobj = document.getElementById("lorebutton3");
-				  myobj.remove()
-				  var contents = document.getElementById("loretext").innerHTML
-				  document.getElementById("loretext").innerHTML = lore3 + '<br>' + '<br>' + contents
-				  document.getElementById("lorebutton4").style.display = "block";
-				  IntroPressed = IntroPressed + 1;
-			  break;
-			  case 4:
-				  var myobj = document.getElementById("lorebutton4");
-				  myobj.remove()
-				  var contents = document.getElementById("loretext").innerHTML
-				  document.getElementById("loretext").innerHTML = lore4 + '<br>' + '<br>' + contents
-				  			
-				  IntroPressed = IntroPressed + 2;
-			  break;
-
+			var myobj = document.getElementById("lorebutton" + IntroPressed);
+			myobj.remove()
+			document.getElementById("lore1").style.display = "block";	
+			var contents = document.getElementById("loretext").innerHTML
+			document.getElementById("loretext").innerHTML = IntroLore[IntroPressed - 1] + '<br>' + '<br>' + contents;			  
+			IntroPressed = IntroPressed + 1;
+			console.log(IntroPressed)
+			if(IntroPressed != 10 )
+			{
+				document.getElementById("lorebutton" + IntroPressed ).style.display = "block";
+			}
+			if(IntroPressed == 10)
+			{
+				StatPage = true;
+				document.getElementById("StatButton").style.display = "block";
+			}
 		}
-	}
 	</script>
 </body>
 </html>
