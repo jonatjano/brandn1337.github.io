@@ -81,28 +81,64 @@
 
 
 	<div class = "RightSection">
-		<p id ="lore1" class ="Lore" style="display: none;">
-		You open yours eyes and immediately put your hand in front of you to block out the raging sun
-		</p>
+		<p id ="lore1" class ="Lore" style="display: none;"><span id = "loretext"></span></p>
 	</div>
 
 
 	<div class = "World">
-		<button id ="lorebutton1" type="button" onclick="Intro(1)"  class="WorldButtons">open eyes</button>
+		<button id ="lorebutton1" type="button" onclick="Intro(IntroPressed)"  class="WorldButtons">open eyes</button>
+		<button id ="lorebutton2" type="button" onclick="Intro(IntroPressed)"  class="WorldButtons" style="display:none;">Get up</button>
+		<button id ="lorebutton3" type="button" onclick="Intro(IntroPressed)"  class="WorldButtons" style="display:none;">Look around</button>
+		<button id ="lorebutton4" type="button" onclick="Intro(IntroPressed)"  class="WorldButtons" style="display:none;">Remember more</button>
+		<button id ="lorebutton5" type="button" onclick="Intro(IntroPressed)"  class="WorldButtons" style="display:none;">Remember more</button>
 	</div>
 
-
-	
 	<script>
-
+	
+	var IntroPressed = 1;
+	var lore1 = "You open yours eyes and immediately put your hand in front of you to block out the raging sun"
+	var lore2 = "you finnaly decide to get up and start figuring out whats happening"
+	var lore3 = "As you look around memories start flooding back into you. you remember hearing sirens in your city, then suddenly a gigantic mushroom cloud appeared in the distance,"
+	var lore4 = "After brefily seeing the cloud for less than one tenth of a second all what was left was searing pain, the feeling of your flesh and bones being vaporized was not a good one"
 	function Intro(num)
 	{
 		switch(num)
 		{
 			  case 1:
-			  document.getElementById("lore1").style.display = "block";	
-			  document.getElementById("lorebutton1").style.display = "none";	
+				  document.getElementById("loretext").innerHTML = lore1;
+				  document.getElementById("lore1").style.display = "block";	
+				  var myobj = document.getElementById("lorebutton1");
+				  myobj.remove()
+				  document.getElementById("lorebutton2").style.display = "block";	
+				  IntroPressed = IntroPressed + 1;
 			  break;
+	
+			  case 2:
+				  var myobj = document.getElementById("lorebutton2");
+				  myobj.remove()
+				  var contents = document.getElementById("loretext").innerHTML
+				  document.getElementById("loretext").innerHTML = lore2 + '<br>' + '<br>' + contents
+				  document.getElementById("lorebutton3").style.display = "block";
+				  IntroPressed = IntroPressed + 1;
+			  break;
+
+			  case 3:
+				  var myobj = document.getElementById("lorebutton3");
+				  myobj.remove()
+				  var contents = document.getElementById("loretext").innerHTML
+				  document.getElementById("loretext").innerHTML = lore3 + '<br>' + '<br>' + contents
+				  document.getElementById("lorebutton4").style.display = "block";
+				  IntroPressed = IntroPressed + 1;
+			  break;
+			  case 4:
+				  var myobj = document.getElementById("lorebutton4");
+				  myobj.remove()
+				  var contents = document.getElementById("loretext").innerHTML
+				  document.getElementById("loretext").innerHTML = lore4 + '<br>' + '<br>' + contents
+
+				  IntroPressed = IntroPressed + 1;
+			  break;
+
 		}
 	}
 	</script>
